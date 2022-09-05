@@ -2,13 +2,6 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @line_items = LineItem.where(order_id: @order.id)
-    puts @line_items[0].item_price_cents
-    @products = @line_items.map {|line_item|
-      puts "Current product id is : #{line_item.product_id}"
-      @curr_product = Product.where(id: line_item.product_id)
-      {line_item: line_item, name: @curr_product[0].name, description: @curr_product[0].description, image: @curr_product[0].image}
-    }
   end
 
   def create
