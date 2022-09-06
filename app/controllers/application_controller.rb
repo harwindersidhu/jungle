@@ -19,8 +19,15 @@ class ApplicationController < ActionController::Base
   def cart_subtotal_cents
     enhanced_cart.map {|entry| entry[:product].price_cents * entry[:quantity]}.sum
   end
-  helper_method :cart_subtotal_cents
 
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  helper_method :cart_subtotal_cents, :current_user
+
+  def authorize
+    redirect_to '/login' unless current_user
+  end
 
   def update_cart(new_cart)
     cookies[:cart] = {

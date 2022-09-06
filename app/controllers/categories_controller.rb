@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  
+  before_action :authorize
 
   def show
     @category = Category.find(params[:id])
