@@ -56,7 +56,10 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # gem 'dotenv-rails'
   gem 'dotenv-rails', groups: [:development, :test]
-gem 'rspec-rails'
+  #gem 'rspec-rails'
+
+  gem 'rspec-rails', '~> 5.1'
+  gem 'net-smtp', require: false
 end
 
 group :development do
